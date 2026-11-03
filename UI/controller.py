@@ -1,3 +1,11 @@
+'''
+4. logica del Controller
+Inizializza il popolamento dei menu a tendina all'avvio (richiamando il Model),
+gestisci la memorizzazione delle scelte dell'utente (tramite il parametro on_select)
+implementa la funzione legata al pulsante per popolare la ListView o mostrare l'alert se la ricerca non produce risultati.
+'''
+
+
 import flet as ft
 from UI.view import View
 from model.model import Model
@@ -18,6 +26,7 @@ class Controller:
         self.genere_selezionato = None
 
     # POPOLA DROPDOWN
+
     # TODO
 
     # CALLBACKS DROPDOWN

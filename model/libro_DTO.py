@@ -1,5 +1,12 @@
-from dataclasses import dataclass
-
+'''
+1. implemento DAO
+scrivo query sql per interagire con database MySQL
+prima recupero le liste di base (all biblioteche all generi)
+poi recupero la query per filtrare i libri come richiesto
+Eseguendo i singoli DAO tramite script di testo dovrei ottenere le liste di oggetti DTO
+'''
+from database.DB_connect import DB_connect
+from model.biblioteca_DTO import Biblioteca
 '''
     DTO (Data Transfer Object) dell'entità Libro
 '''
@@ -23,3 +30,7 @@ class Libro:
     def __repr__(self):
         return (f"{self.id} | {self.titolo} | Autore: {self.autore} | Genere: {self.genere} | "
                 f"Anno: {self.anno_pubblicazione} | Biblioteca: {self.id_biblioteca}")
+    #recupero le biblioteche
+    def get_bibliotecaDAO(self):
+        cnx=DB._connect.get_connection()
+        cursor=cnx.cursor()

@@ -1,3 +1,12 @@
+'''
+3. VIEW
+Aggiungi nell'interfaccia grafica i controlli richiesti dal README:
+i due Dropdown uno per le biblioteche, uno per i generi,
+il pulsante "Mostra Libri" (ft.Button)
+la ListView per stampare i risultat
+Avviando main l'interfaccia mostra i nuovi elementi grafici posizionati nel layout sotto al titolo
+'''
+
 import flet as ft
 from UI.alert import AlertManager
 

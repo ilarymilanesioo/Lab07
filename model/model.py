@@ -1,3 +1,9 @@
+'''
+2. Aggiorno Modello
+creo metodi in classe modello che fanno da ponte chiamando metodi dei rispettivi DAO
+Il modello espone puliti i metodi, get_biblioteche() get librifiltrati() e ge_generi() pronti per controller
+'''
+
 from database.biblioteca_DAO import BibliotecaDAO
 from database.libro_DAO import LibroDAO
 
