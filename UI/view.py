@@ -19,6 +19,7 @@ from UI.alert import AlertManager
 class View:
     def __init__(self, page: ft.Page):
         # Page
+        self.btn_cerca = None
         self.page = page
         self.page.title = "Lab07"
         self.page.horizontal_alignment = "center"
@@ -28,14 +29,17 @@ class View:
         self.alert = AlertManager(page)
 
         # Controller
-        self.controller = None
+        self.controller = None #All'inizio il Controller non è ancora collegato verrà associato subito dopo tramite il metodo apposito
 
+    #per richiamare l'avviso a schermo passando un messaggio di errore o di testo personalizzato
     def show_alert(self, messaggio):
         self.alert.show_alert(messaggio)
 
+    #con cui colleghiamo il Controller alla View, permettendo alla grafica di comunicare con la logica
     def set_controller(self, controller):
         self.controller = controller
 
+    #per aggiornare la grafica a schermo ogni volta che cambiamo i dati
     def update(self):
         self.page.update()
 
@@ -45,9 +49,34 @@ class View:
         self.txt_titolo = ft.Text(value="Biblioteche di Torino", size=38, weight=ft.FontWeight.BOLD)
 
         # --- Sezione 2: Filtraggio ---
+        #dropdown (menu a tendina) per biblioteche
+        self.dd_biblioteca = ft.Dropdown(
+            label="Biblioteca",
+            hint_text="Seleziona una biblioteca",
+            width=300,
+            options=[],
+            on_change=self.controller.read_biblioteca  #collega la callback del controller che ho crypto
+        )
         # TODO
 
         # Sezione 3: Libri
+        #dropdown per i generi
+        self.dd_genere = ft.Dropdown(
+            label="Genere",
+            hint_text="Seleziona un genere",
+            width=300,
+            options=[],#verrà popolato da controller
+            on_change = self.controller.read_genere
+        )
+        '''
+        # --- AGGIUNGI PULSANTE DI RICERCA ---
+        self.btn_cerca = ft.ElevatedButton(
+            text="Cerca Libri",
+            on_click=self.controller.handle_cerca
+        )
+'''
+        # Sezione risultati
+        self.txt_risultato = ft.ListView(expand=1, spacing=10, padding=10)
         # TODO
 
         # --- Toggle Tema ---
@@ -62,9 +91,24 @@ class View:
             ft.Divider(),
 
             # Sezione 2: Filtraggio
+            #raggruppa in una riga orizzontale il menu delle biblioteche, quello dei generi e il pulsante di ricerca
+            ft.Row(
+                [
+                    self.dd_biblioteca,
+                    self.dd_genere,
+                    '''self.btn_cerca'''
+                ],
+                alignment=ft.MainAxisAlignment.CENTER,
+                spacing=20
+            ),
+
+            ft.Divider(), #divisore opzionale per separare i filtri dai risultati
             # TODO
 
             # Sezione 3: Libri
+            #mostra elenco libri filtrati
+            self.txt_risultato,
+            ft.Divider()
             # TODO
         )
 
